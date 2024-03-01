@@ -2,9 +2,34 @@
 <html>
   <head>
     <title>My App</title>
-    <!-- <link rel="stylesheet" href="/stylesheets/style.css"> -->
+    <link rel="stylesheet" href="./index.css">
   </head>
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+    <div class="content">
+        <table>
+            <caption>List</caption>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Course Type</th>
+                    <th>Course Name</th>
+                    <th>Derpartmetn</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(var i=0; i<data.length; i++) { %>
+                    <tr>
+                        <td><%= data[i].id %></td>
+                        <td><%= data[i].name %></td>
+                        <td><%= data[i].course_type %></td>
+                        <td><%= data[i].course_name %></td>
+                        <td><%= data[i].department %></td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
   </body>
