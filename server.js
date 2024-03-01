@@ -3,6 +3,7 @@ const app = express();
 const port = 3000;
 const title = 'EJS Template Engine';
 let data = require('./data');
+const e = require('express');
 
 app.use(express.urlencoded({extend: true}));
 app.use(express.static('./templates'));
@@ -32,6 +33,28 @@ app.post('/save', (req, res) => {
     return res.redirect('/');
 });
 
+app.post('/delete', (req, res) => {
+    const listChecked = Object.keys(req.body);
+    if (listChecked.length <= 0) {
+       return res.redirect('/');
+    }
+    function removeData(length) {
+        const maCourse = Number(listChecked[length]);
+        console.log(maCourse);
+        data = data.filter((course) => course.id !== maCourse);
+        if (length > 0) {
+            console.log(JSON.stringify(data));
+            removeData(length - 1);
+        }
+        else {
+            return res.redirect('/');
+        }
+        data = data.filter((course) => course.id !== maCourse);
+
+    }
+    removeData(listChecked.length - 1);
+
+});
 
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);

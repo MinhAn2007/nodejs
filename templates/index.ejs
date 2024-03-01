@@ -17,8 +17,10 @@
                     <th>Course Type</th>
                     <th>Course Name</th>
                     <th>Derpartmet</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
+            <form action="/delete" method="post">
             <tbody>
                 <% for(var i=0; i<data.length; i++) { %>
                     <tr>
@@ -27,11 +29,16 @@
                         <td><%= data[i].course_type %></td>
                         <td><%= data[i].course_name %></td>
                         <td><%= data[i].department %></td>
+                        <td>
+                            <input type="checkbox" name="id" value="<%= data[i].id %>">
+                        </td>
                     </tr>
                 <% } %>
             </tbody>
         </table>
     </div>
+    <button type="submit">Delete</button>
+</form>
     <form action="/save" method="post">
         <input type="text" name="name" placeholder="Name" required>
         <br>
